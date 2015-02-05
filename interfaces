@@ -1,0 +1,41 @@
+# /etc/network/interfaces -- configuration file for ifup(8), ifdown(8)
+ 
+# The loopback interface
+auto lo
+iface lo inet loopback
+
+# Wireless interfaces
+auto wlan0
+iface wlan0 inet dhcp
+#	wireless_mode managed
+#	wireless_essid any
+#	wpa-driver wext
+	wpa-conf /etc/wpa_supplicant.conf
+
+#iface atml0 inet dhcp
+#nameserver 68.105.28.12,  68.105.29.12,  68.105.28.11
+#wpa-ssid FunnyBear
+#wpa-psk 5599aa355157ce72dcb441fd99a635da4f3ee4c62d1b036bf12136ad980b9a8c 
+
+# Wired or wireless interfaces
+auto eth0
+#iface eth0 inet dhcp
+iface eth0 inet static
+         address 192.168.1.162
+         netmask 255.255.255.0
+         gateway 192.168.1.1
+
+iface eth1 inet dhcp
+
+
+# Ethernet/RNDIS gadget (g_ether)
+# ... or on host side, usbnet and random hwaddr
+iface usb0 inet static
+	address 192.168.7.2
+	netmask 255.255.255.0
+	network 192.168.7.0
+	gateway 192.168.7.1
+
+# Bluetooth networking
+iface bnep0 inet dhcp
+
